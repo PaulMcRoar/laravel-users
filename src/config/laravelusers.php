@@ -14,6 +14,9 @@ return [
     // Enable `auth` middleware
     'authEnabled'                   => true,
 
+    // define any custom middleware to run across all routes
+    'customMiddleware' => [],
+
     // Enable Optional Roles Middleware on the users assignments
     'rolesEnabled'                  => false,
 

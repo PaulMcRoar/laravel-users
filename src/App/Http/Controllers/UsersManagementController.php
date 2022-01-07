@@ -15,6 +15,7 @@ class UsersManagementController extends Controller
     private $_rolesEnabled;
     private $_rolesMiddlware;
     private $_rolesMiddleWareEnabled;
+    private $_customMiddleware;
 
     /**
      * Create a new controller instance.
@@ -27,9 +28,13 @@ class UsersManagementController extends Controller
         $this->_rolesEnabled = config('laravelusers.rolesEnabled');
         $this->_rolesMiddlware = config('laravelusers.rolesMiddlware');
         $this->_rolesMiddleWareEnabled = config('laravelusers.rolesMiddlwareEnabled');
+        $this->_customMiddleware = config('laravelusers.customMiddleware');
 
         if ($this->_authEnabled) {
             $this->middleware('auth');
+        }
+        foreach($this->_customMiddleware as $middleware){
+            $this->middleware($middleware);
         }
 
         if ($this->_rolesEnabled && $this->_rolesMiddleWareEnabled) {
